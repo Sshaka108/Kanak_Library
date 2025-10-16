@@ -499,12 +499,164 @@
                     <div class="category-icon">9️⃣</div>
                     <h3>Class 9</h3>
                     <p>Board exam preparation for Class 9</p>
-                </div>
-                <div class="category-card" onclick="showClassContent(10)">
-                    <div class="category-icon">🔟</div>
-                    <h3>Class 10</h3>
-                    <p>Complete board exam resources</p>
-                </div>
+              <!-- Class Content Sections (Hidden by default) -->
+<section class="section" id="class-content" style="display: none;">
+    <button onclick="hideClassContent()" style="padding: 0.8rem 1.5rem; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 2rem;">← Back to Classes</button>
+    
+    <h2 class="section-title" id="class-title">Class 10 - Study Materials</h2>
+    
+    <!-- Subject Tabs -->
+    <div class="subject-filter">
+        <button class="subject-btn active" onclick="showSubject('all')">All Subjects</button>
+        <button class="subject-btn" onclick="showSubject('mathematics')">Mathematics</button>
+        <button class="subject-btn" onclick="showSubject('science')">Science</button>
+        <button class="subject-btn" onclick="showSubject('english')">English</button>
+        <button class="subject-btn" onclick="showSubject('hindi')">Hindi</button>
+        <button class="subject-btn" onclick="showSubject('social-science')">Social Science</button>
+    </div>
+
+    <!-- Content Grid -->
+    <div class="content-grid" id="class-materials">
+        
+        <!-- MATHEMATICS CONTENT -->
+        <div class="content-card" data-subject="mathematics">
+            <div class="content-header">
+                <span class="content-type">📚 PDF</span>
+                <h4>Algebra - Complete Notes</h4>
+            </div>
+            <div class="content-body">
+                <p class="content-meta">Class 10 • Mathematics</p>
+                <p>Linear equations, quadratic equations, and polynomials</p>
+                <a href="YOUR_GOOGLE_DRIVE_LINK_HERE" class="download-btn" target="_blank">Download</a>
+            </div>
+        </div>
+
+        <div class="content-card" data-subject="mathematics">
+            <div class="content-header">
+                <span class="content-type">📚 PDF</span>
+                <h4>Geometry Formulas</h4>
+            </div>
+            <div class="content-body">
+                <p class="content-meta">Class 10 • Mathematics</p>
+                <p>All important geometry formulas and theorems</p>
+                <a href="YOUR_GOOGLE_DRIVE_LINK_HERE" class="download-btn" target="_blank">Download</a>
+            </div>
+        </div>
+
+        <div class="content-card" data-subject="mathematics">
+            <div class="content-header">
+                <span class="content-type">🎥 Video</span>
+                <h4>Trigonometry Basics</h4>
+            </div>
+            <div class="content-body">
+                <p class="content-meta">Class 10 • Mathematics</p>
+                <p>Complete video lecture on trigonometric ratios</p>
+                <a href="YOUR_GOOGLE_DRIVE_VIDEO_LINK" class="download-btn" target="_blank">Watch Now</a>
+            </div>
+        </div>
+
+        <!-- SCIENCE CONTENT -->
+        <div class="content-card" data-subject="science">
+            <div class="content-header">
+                <span class="content-type">📚 PDF</span>
+                <h4>Physics - Motion & Force</h4>
+            </div>
+            <div class="content-body">
+                <p class="content-meta">Class 10 • Science (Physics)</p>
+                <p>Newton's laws, equations of motion, and numerical problems</p>
+                <a href="YOUR_GOOGLE_DRIVE_LINK_HERE" class="download-btn" target="_blank">Download</a>
+            </div>
+        </div>
+
+        <div class="content-card" data-subject="science">
+            <div class="content-header">
+                <span class="content-type">📚 PDF</span>
+                <h4>Chemistry - Acids, Bases & Salts</h4>
+            </div>
+            <div class="content-body">
+                <p class="content-meta">Class 10 • Science (Chemistry)</p>
+                <p>Chemical reactions, pH scale, and important compounds</p>
+                <a href="YOUR_GOOGLE_DRIVE_LINK_HERE" class="download-btn" target="_blank">Download</a>
+            </div>
+        </div>
+
+        <div class="content-card" data-subject="science">
+            <div class="content-header">
+                <span class="content-type">📚 PDF</span>
+                <h4>Biology - Life Processes</h4>
+            </div>
+            <div class="content-body">
+                <p class="content-meta">Class 10 • Science (Biology)</p>
+                <p>Nutrition, respiration, transportation, and excretion</p>
+                <a href="YOUR_GOOGLE_DRIVE_LINK_HERE" class="download-btn" target="_blank">Download</a>
+            </div>
+        </div>
+
+        <!-- ENGLISH CONTENT -->
+        <div class="content-card" data-subject="english">
+            <div class="content-header">
+                <span class="content-type">📚 PDF</span>
+                <h4>English Grammar Guide</h4>
+            </div>
+            <div class="content-body">
+                <p class="content-meta">Class 10 • English</p>
+                <p>Complete grammar rules with examples and exercises</p>
+                <a href="YOUR_GOOGLE_DRIVE_LINK_HERE" class="download-btn" target="_blank">Download</a>
+            </div>
+        </div>
+
+        <div class="content-card" data-subject="english">
+            <div class="content-header">
+                <span class="content-type">📚 PDF</span>
+                <h4>Letter Writing Format</h4>
+            </div>
+            <div class="content-body">
+                <p class="content-meta">Class 10 • English</p>
+                <p>Formal and informal letter writing with samples</p>
+                <a href="YOUR_GOOGLE_DRIVE_LINK_HERE" class="download-btn" target="_blank">Download</a>
+            </div>
+        </div>
+
+        <!-- HINDI CONTENT -->
+        <div class="content-card" data-subject="hindi">
+            <div class="content-header">
+                <span class="content-type">📚 PDF</span>
+                <h4>हिंदी व्याकरण संपूर्ण नोट्स</h4>
+            </div>
+            <div class="content-body">
+                <p class="content-meta">Class 10 • Hindi</p>
+                <p>संपूर्ण हिंदी व्याकरण नियम और उदाहरण</p>
+                <a href="YOUR_GOOGLE_DRIVE_LINK_HERE" class="download-btn" target="_blank">Download</a>
+            </div>
+        </div>
+
+        <!-- SOCIAL SCIENCE CONTENT -->
+        <div class="content-card" data-subject="social-science">
+            <div class="content-header">
+                <span class="content-type">📚 PDF</span>
+                <h4>Indian History - Freedom Struggle</h4>
+            </div>
+            <div class="content-body">
+                <p class="content-meta">Class 10 • Social Science</p>
+                <p>Complete notes on Indian independence movement</p>
+                <a href="YOUR_GOOGLE_DRIVE_LINK_HERE" class="download-btn" target="_blank">Download</a>
+            </div>
+        </div>
+
+        <div class="content-card" data-subject="social-science">
+            <div class="content-header">
+                <span class="content-type">📚 PDF</span>
+                <h4>Geography - Resources & Development</h4>
+            </div>
+            <div class="content-body">
+                <p class="content-meta">Class 10 • Social Science</p>
+                <p>Natural resources, agriculture, and industries</p>
+                <a href="YOUR_GOOGLE_DRIVE_LINK_HERE" class="download-btn" target="_blank">Download</a>
+            </div>
+        </div>
+
+    </div>
+</section>
                 <div class="category-card" onclick="showClassContent(11)">
                     <div class="category-icon">1️⃣1️⃣</div>
                     <h3>Class 11</h3>
