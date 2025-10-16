@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanak Library - Free Educational Resources</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "📚";
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .search-box button {
+            padding: 1rem 2rem;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .search-box button:hover {
+            background: #ee5a52;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Category Cards */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #667eea;
+        }
+
+        .category-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Content Cards */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .content-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .content-header {
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .content-type {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-body {
+            padding: 1rem;
+        }
+
+        .content-card h4 {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .content-meta {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .download-btn:hover {
+            background: #5568d3;
+        }
+
+        /* Subject Buttons */
+        .subject-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .subject-btn {
+            padding: 0.7rem 1.5rem;
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .subject-btn:hover, .subject-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        /* About Section */
+        .about-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content h2 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .feature-item::before {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item:nth-child(1)::before { content: "✅"; }
+        .feature-item:nth-child(2)::before { content: "📱"; }
+        .feature-item:nth-child(3)::before { content: "🆓"; }
+        .feature-item:nth-child(4)::before { content: "🔄"; }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Upload Section */
+        .upload-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .upload-section.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .submit-btn {
+            padding: 1rem 2rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #5568d3;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Kanak Library</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#classes">Classes</a></li>
+                <li><a href="#exams">Exams</a></li>
+                <li><a href="#trending">Trending</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#upload">Upload</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Welcome to Kanak Library</h1>
+        <p>Your Free Digital Learning Platform - Books, PDFs, and Video Lectures</p>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search for books, subjects, or topics...">
+            <button onclick="performSearch()">Search</button>
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Statistics -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">250+</div>
+                <div class="stat-label">Study Materials</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Classes Covered</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Free Access</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Subjects</div>
+            </div>
+        </div>
+
+        <!-- Classes Section -->
+        <section class="section" id="classes">
+            <h2 class="section-title">📖 Browse by Class</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="showClassContent(6)">
+                    <div class="category-icon">6️⃣</div>
+                    <h3>Class 6</h3>
+                    <p>Foundation subjects for Class 6 students</p>
+                </div>
+                <div class="category-card" onclick="showClassContent(7)">
+                    <div class="category-icon">7️⃣</div>
+                    <h3>Class 7</h3>
+                    <p>Comprehensive study material for Class 7</p>
+                </div>
+                <div class="category-card" onclick="showClassContent(8)">
+                    <div class="category-icon">8️⃣</div>
+                    <h3>Class 8</h3>
+                    <p>Complete resources for Class 8</p>
+                </div>
+                <div class="category-card" onclick="showClassContent(9)">
+                    <div class="category-icon">9️⃣</div>
+                    <h3>Class 9</h3>
+                    <p>Board exam preparation for Class 9</p>
+                </div>
+                <div class="category-card" onclick="showClassContent(10)">
+                    <div class="category-icon">🔟</div>
+                    <h3>Class 10</h3>
+                    <p>Complete board exam resources</p>
+                </div>
+                <div class="category-card" onclick="showClassContent(11)">
+                    <div class="category-icon">1️⃣1️⃣</div>
+                    <h3>Class 11</h3>
+                    <p>Advanced level study materials</p>
+                </div>
+                <div class="category-card" onclick="showClassContent(12)">
+                    <div class="category-icon">1️⃣2️⃣</div>
+                    <h3>Class 12</h3>
+                    <p>Complete senior secondary resources</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exams Section -->
+        <section class="section" id="exams">
+            <h2 class="section-title">🎯 Competitive Exams</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="showExamContent('SSC')">
+                    <div class="category-icon">📝</div>
+                    <h3>SSC Exams</h3>
+                    <p>Complete preparation material for SSC exams</p>
+                </div>
+                <div class="category-card" onclick="showExamContent('UP Police')">
+                    <div class="category-icon">👮</div>
+                    <h3>UP Police</h3>
+                    <p>Comprehensive resources for UP Police recruitment</p>
+                </div>
+            </div>
+
+            <!-- Subject Filters -->
+            <div class="subject-filter" id="subjectFilter" style="display: none;">
+                <button class="subject-btn active" onclick="filterSubject('all')">All Subjects</button>
+                <button class="subject-btn" onclick="filterSubject('Mathematics')">Mathematics</button>
+                <button class="subject-btn" onclick="filterSubject('Science')">Science</button>
+                <button class="subject-btn" onclick="filterSubject('English')">English</button>
+                <button class="subject-btn" onclick="filterSubject('Hindi')">Hindi</button>
+                <button class="subject-btn" onclick="filterSubject('Social Science')">Social Science</button>
+                <button class="subject-btn" onclick="filterSubject('General Knowledge')">General Knowledge</button>
+                <button class="subject-btn" onclick="filterSubject('Reasoning')">Reasoning</button>
+            </div>
+        </section>
+
+        <!-- Trending Content Section -->
+        <section class="section" id="trending">
+            <h2 class="section-title">🔥 Trending Content</h2>
+            <div class="content-grid" id="trendingContent">
+                <div class="content-card">
+                    <div class="content-header">
+                        <span class="content-type">📚 PDF</span>
+                        <h4>Mathematics - Complete Formula Sheet</h4>
+                    </div>
+                    <div class="content-body">
+                        <p class="content-meta">Class 10 • Mathematics</p>
+                        <p>Comprehensive formula collection for board exams</p>
+                        <a href="#" class="download-btn" onclick="downloadContent(event)">Download</a>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="content-header">
+                        <span class="content-type">🎥 Video</span>
+                        <h4>SSC GK - Indian History</h4>
+                    </div>
+                    <div class="content-body">
+                        <p class="content-meta">SSC • General Knowledge</p>
+                        <p>Complete video lecture series on Indian History</p>
+                        <a href="#" class="download-btn" onclick="downloadContent(event)">Watch Now</a>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="content-header">
+                        <span class="content-type">📖 Book</span>
+                        <h4>English Grammar Mastery</h4>
+                    </div>
+                    <div class="content-body">
+                        <p class="content-meta">Class 11-12 • English</p>
+                        <p>Complete English grammar guide with exercises</p>
+                        <a href="#" class="download-btn" onclick="downloadContent(event)">Download</a>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="content-header">
+                        <span class="content-type">📚 PDF</span>
+                        <h4>UP Police - Previous Year Papers</h4>
+                    </div>
+                    <div class="content-body">
+                        <p class="content-meta">UP Police • All Subjects</p>
+                        <p>Last 5 years solved question papers</p>
+                        <a href="#" class="download-btn" onclick="downloadContent(event)">Download</a>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="content-header">
+                        <span class="content-type">🎥 Video</span>
+                        <h4>Science - Chemical Reactions</h4>
+                    </div>
+                    <div class="content-body">
+                        <p class="content-meta">Class 9 • Science</p>
+                        <p>Detailed explanation with practical examples</p>
+                        <a href="#" class="download-btn" onclick="downloadContent(event)">Watch Now</a>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="content-header">
+                        <span class="content-type">📚 PDF</span>
+                        <h4>Reasoning - Logical Puzzles</h4>
+                    </div>
+                    <div class="content-body">
+                        <p class="content-meta">SSC • Reasoning</p>
+                        <p>500+ reasoning questions with solutions</p>
+                        <a href="#" class="download-btn" onclick="downloadContent(event)">Download</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section about-section" id="about">
+            <div class="about-content">
+                <h2>About Kanak Library</h2>
+                <p>Welcome to Kanak Library, your trusted companion in the journey of learning and academic excellence. We are dedicated to providing free, high-quality educational resources to students from Class 6 to 12 and those preparing for competitive examinations.</p>
+                
+                <p>Our mission is to democratize education by making quality study materials accessible to everyone, regardless of their financial background. We believe that education is the key to unlocking potential and creating opportunities.</p>
+
+                <div class="features-list">
+                    <div class="feature-item">
+                        <h4>Quality Content</h4>
+                        <p>Curated materials from trusted sources</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Easy Access</h4>
+                        <p>Access anywhere, anytime on any device</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>100% Free</h4>
+                        <p>No hidden charges or subscriptions</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Regular Updates</h4>
+                        <p>Fresh content added regularly</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 2rem;"><strong>What We Offer:</strong></p>
+                <p>📚 Comprehensive textbooks and reference books<br>
+                📄 Important notes and PDF materials<br>
+                🎥 Video lectures from expert educators<br>
+                📝 Previous year question papers<br>
+                🎯 Exam-focused study materials</p>
+
+                <p style="margin-top: 1.5rem;">Whether you're preparing for board exams or competitive tests like SSC or UP Police, Kanak Library is here to support your educational goals. Join thousands of students who trust us for their learning needs.</p>
+            </div>
+        </section>
+
+        <!-- Upload Section -->
+        <section class="section upload-section" id="uploadSection">
+            <h2 class="section-title">📤 Upload Content</h2>
+            <form id="uploadForm" onsubmit="handleUpload(event)">
+                <div class="form-group">
+                    <label>Content Type</label>
+                    <select id="contentType" required>
+                        <option value="">Select Type</option>
+                        <option value="book">Book</option>
+                        <option value="pdf">PDF</option>
+                        <option value="video">Video Lecture</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="category" required onchange="updateSubcategory()">
+                        <option value="">Select Category</option>
+                        <option value="class">Class (6-12)</option>
+                        <option value="exam">Competitive Exam</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="subcategoryGroup" style="display: none;">
+                    <label>Select Class/Exam</label>
+                    <select id="subcategory" required>
+                        <option value="">Select</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Subject</label>
+                    <select id="subject" required>
+                        <option value="">Select Subject</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Science">Science</option>
+                        <option value="English">English</option>
+                        <option value="Hindi">Hindi</option>
+                        <option value="Social Science">Social Science</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Biology">Biology</option>
+                        <option value="General Knowledge">General Knowledge</option>
+                        <option value="Reasoning">Reasoning</option>
+                        <option value="General Studies">General Studies</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="title" required placeholder="Enter content title">
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="description" rows="4" required placeholder="Brief description of the content"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Topic/Chapter</label>
+                    <input type="text" id="topic" required placeholder="e.g., Algebra, Cell Structure, etc.">
+                </div>
+
+                <div class="form-group">
+                    <label>File Upload</label>
+                    <input type="file" id="fileUpload" required accept=".pdf,.mp4,.doc,.docx">
+                </div>
+
+                <button type="submit" class="submit-btn">Upload Content</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Kanak Library. All rights reserved.</p>
+        <p>Empowering students with free quality education</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">📧 Contact: info@kanaklibrary.com | 📞 Support: +91-XXXXXXXXXX</p>
+    </footer>
+
+    <script>
+        // Sample data storage
+        let contentData = [];
+
+        // Search functionality
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (searchTerm) {
+                alert(`Searching for: ${searchTerm}\n\nSearch results will appear here once you add content.`);
+            }
+        }
+
+        // Show class content
+        function showClassContent(classNum) {
+            document.getElementById('subjectFilter').style.display = 'flex';
+            alert(`Showing content for Class ${classNum}\n\nContent will be displayed here as you upload materials.`);
+            window.location.href = '#trending';
+        }
+
+        // Show exam content
+        function showExamContent(exam) {
+            document.getElementById('subjectFilter').style.display = 'flex';
+            alert(`Showing content for ${exam}\n\nExam-specific materials will appear here.`);
+            window.location.href = '#trending';
+        }
+
+        // Filter by subject
+        function filterSubject(subject) {
+            const buttons = document.querySelectorAll('.subject-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (subject === 'all') {
+                alert('Showing all subjects');
+            } else {
+                alert(`Filtering by: ${subject}`);
+            }
+        }
+
+        // Download content
+        function downloadContent(event) {
+            event.preventDefault();
+            alert('Download will start once you implement backend functionality.\n\nFor now, this is a demo button.');
+        }
+
+        // Toggle upload section
+        const uploadLink = document.querySelector('a[href="#upload"]');
+        if (uploadLink) {
+            uploadLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                const uploadSection = document.getElementById('uploadSection');
+                uploadSection.classList.toggle('active');
+                uploadSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        // Update subcategory dropdown
+        function updateSubcategory() {
+            const category = document.getElementById('category').value;
+            const subcategoryGroup = document.getElementById('subcategoryGroup');
+            const subcategory = document.getElementById('subcategory');
+            
+            subcategory.innerHTML = '<option value="">Select</option>';
+            
+            if (category === 'class') {
+                subcategoryGroup.style.display = 'block';
+                for (let i = 6; i <= 12; i++) {
+                    subcategory.innerHTML += `<option value="class-${i}">Class ${i}</option>`;
+                }
+            } else if (category === 'exam') {
+                subcategoryGroup.style.display = 'block';
+                subcategory.innerHTML += '<option value="ssc">SSC</option>';
+                subcategory.innerHTML += '<option value="up-police">UP Police</option>';
+            } else {
+                subcategoryGroup.style.display = 'none';
+            }
+        }
+
+        // Handle upload form
+        function handleUpload(event) {
+            event.preventDefault();
+            
+            const formData = {
+                contentType: document.getElementById('contentType').value,
+                category: document.getElementById('category').value,
+                subcategory: document.getElementById('subcategory').value,
+                subject: document.getElementById('subject').value,
+                title: document.getElementById('title').value,
+                description: document.getElementById('description').value,
+                topic: document.getElementById('topic').value,
+                file: document.getElementById('fileUpload').files[0]
+            };
+            
+            // Store in memory
+            contentData.push(formData);
+            
+            alert('Content uploaded successfully!\n\nTo make this fully functional, you will need to:\n1. Set up a backend server (Node.js, PHP, etc.)\n2. Configure file storage (cloud storage or server)\n3. Set up a database to store content metadata\n\nFor now, the data is stored in browser memory.');
+            
+            document.getElementById('uploadForm').reset();
+            document.getElementById('subcategoryGroup').style.display = 'none';
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#upload') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // Enter key search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    </script>
+</body>
+</html>
