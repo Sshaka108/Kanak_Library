@@ -907,4 +907,253 @@
             ],
             'Mental Aptitude': [
                 { name: 'Attention and Observation', type: 'PDF', link: 'https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_MENT_ATT' },
-                { name: 'Problem Solving', type: 'PDF', link: 'https://drive.google.com/uc?
+                { name: 'Problem Solving', type: 'PDF', link: 'https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_MENT_PROB' },
+                { name: 'Decision Making', type: 'PDF', link: 'https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_MENT_DEC' },
+                { name: 'Relationship Concepts', type: 'PDF', link: 'https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_MENT_REL' },
+                { name: 'Number Series', type: 'PDF', link: 'https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_MENT_NUM' },
+                { name: 'Mental Aptitude MCQs', type: 'PDF', link: 'https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_MENT_MCQ' }
+            ],
+            'Hindi': [
+                { name: 'हिंदी व्याकरण - संधि', type: 'PDF', link: 'https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_HIN_EXAM_SANDHI' },
+                { name: 'हिंदी व्याकरण - समास', type: 'PDF', link: 'https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_HIN_EXAM_SAMAS' },
+                { name: 'हिंदी व्याकरण - अलंकार', type: 'PDF', link: 'https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_HIN_EXAM_ALANKAR' },
+                { name: 'मुहावरे और लोकोक्तियाँ', type: 'PDF', link: 'https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_HIN_EXAM_MUHAVARE' },
+                { name: 'पर्यायवाची शब्द', type: 'PDF', link: 'https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_HIN_EXAM_SYNONYM' },
+                { name: 'विलोम शब्द', type: 'PDF', link: 'https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_HIN_EXAM_ANTONYM' },
+                { name: 'वाक्यांश के लिए एक शब्द', type: 'PDF', link: 'https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_HIN_EXAM_ONEWORD' },
+                { name: 'अपठित गद्यांश', type: 'PDF', link: 'https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_HIN_EXAM_PASSAGE' }
+            ],
+            'General Hindi': [
+                { name: 'हिंदी साहित्य का इतिहास', type: 'PDF', link: 'https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_GHINDI_LIT' },
+                { name: 'प्रमुख कवि और लेखक', type: 'PDF', link: 'https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_GHINDI_WRITERS' },
+                { name: 'हिंदी भाषा का विकास', type: 'PDF', link: 'https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_GHINDI_LANG' },
+                { name: 'व्याकरण - संपूर्ण नोट्स', type: 'PDF', link: 'https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_GHINDI_GRAMMAR' },
+                { name: 'रचना और रचनाकार', type: 'PDF', link: 'https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_GHINDI_WORKS' }
+            ]
+        };
+
+        // Show home view
+        function showHome() {
+            document.getElementById('homeView').classList.remove('hidden');
+            document.getElementById('subjectsView').classList.add('hidden');
+            document.getElementById('chaptersView').classList.add('hidden');
+            document.getElementById('examSubjectsView').classList.add('hidden');
+            document.getElementById('examTopicsView').classList.add('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        // Show class subjects
+        function showClassSubjects(classNum) {
+            currentClass = classNum;
+            const subjects = classSubjects[classNum];
+            
+            document.getElementById('homeView').classList.add('hidden');
+            document.getElementById('subjectsView').classList.remove('hidden');
+            
+            document.getElementById('subjectsTitle').textContent = `Class ${classNum} - Select Subject`;
+            document.getElementById('breadcrumbClass').textContent = `Class ${classNum}`;
+            
+            const grid = document.getElementById('subjectsGrid');
+            grid.innerHTML = '';
+            
+            const subjectIcons = {
+                'Mathematics': '🔢',
+                'Science': '🔬',
+                'English': '📖',
+                'Hindi': '📚',
+                'Social Science': '🌍',
+                'Sanskrit': '🕉️',
+                'Physics': '⚛️',
+                'Chemistry': '🧪',
+                'Biology': '🧬',
+                'Computer Science': '💻',
+                'Economics': '💰',
+                'Business Studies': '📊'
+            };
+            
+            subjects.forEach(subject => {
+                const card = document.createElement('div');
+                card.className = 'category-card';
+                card.onclick = () => showChapters(subject);
+                card.innerHTML = `
+                    <div class="category-icon">${subjectIcons[subject] || '📘'}</div>
+                    <h3>${subject}</h3>
+                    <p>All chapters and study materials</p>
+                `;
+                grid.appendChild(card);
+            });
+            
+            window.scrollTo(0, 0);
+        }
+
+        // Show chapters for a subject
+        function showChapters(subject) {
+            currentSubject = subject;
+            
+            document.getElementById('subjectsView').classList.add('hidden');
+            document.getElementById('chaptersView').classList.remove('hidden');
+            
+            document.getElementById('chaptersTitle').textContent = `Class ${currentClass} - ${subject}`;
+            document.getElementById('breadcrumbClass2').textContent = `Class ${currentClass}`;
+            document.getElementById('breadcrumbSubject').textContent = subject;
+            
+            const grid = document.getElementById('chaptersGrid');
+            grid.innerHTML = '';
+            
+            const chapters = subjectChapters[subject] || [];
+            
+            if (chapters.length === 0) {
+                grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666; padding: 2rem;">Content for this subject will be added soon. Please check back later!</p>';
+            } else {
+                chapters.forEach(chapter => {
+                    const card = document.createElement('div');
+                    card.className = 'content-card';
+                    const typeEmoji = chapter.type === 'Video' ? '🎥' : '📚';
+                    card.innerHTML = `
+                        <div class="content-header">
+                            <span class="content-type">${typeEmoji} ${chapter.type}</span>
+                            <h4>${chapter.name}</h4>
+                        </div>
+                        <div class="content-body">
+                            <p class="content-meta">Class ${currentClass} • ${subject}</p>
+                            <p>Complete notes and study material</p>
+                            <a href="${chapter.link}" class="download-btn" target="_blank">${chapter.type === 'Video' ? 'Watch Now' : 'Download'}</a>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        // Back to subjects
+        function backToSubjects() {
+            document.getElementById('chaptersView').classList.add('hidden');
+            document.getElementById('subjectsView').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        // Show exam subjects
+        function showExamSubjects(exam) {
+            currentExam = exam;
+            const subjects = examSubjects[exam];
+            
+            document.getElementById('homeView').classList.add('hidden');
+            document.getElementById('examSubjectsView').classList.remove('hidden');
+            
+            document.getElementById('examSubjectsTitle').textContent = `${exam} - Select Subject`;
+            document.getElementById('breadcrumbExam').textContent = exam;
+            
+            const grid = document.getElementById('examSubjectsGrid');
+            grid.innerHTML = '';
+            
+            const subjectIcons = {
+                'General Knowledge': '📖',
+                'Reasoning': '🧠',
+                'Quantitative Aptitude': '🔢',
+                'English': '📝',
+                'General Awareness': '🌐',
+                'Current Affairs': '📰',
+                'Numerical Ability': '🔢',
+                'Mental Aptitude': '🧩',
+                'Hindi': '📚',
+                'General Hindi': '📖'
+            };
+            
+            subjects.forEach(subject => {
+                const card = document.createElement('div');
+                card.className = 'category-card';
+                card.onclick = () => showExamTopics(subject);
+                card.innerHTML = `
+                    <div class="category-icon">${subjectIcons[subject] || '📘'}</div>
+                    <h3>${subject}</h3>
+                    <p>Complete preparation material</p>
+                `;
+                grid.appendChild(card);
+            });
+            
+            window.scrollTo(0, 0);
+        }
+
+        // Show exam topics
+        function showExamTopics(subject) {
+            currentExamSubject = subject;
+            
+            document.getElementById('examSubjectsView').classList.add('hidden');
+            document.getElementById('examTopicsView').classList.remove('hidden');
+            
+            document.getElementById('examTopicsTitle').textContent = `${currentExam} - ${subject}`;
+            document.getElementById('breadcrumbExam2').textContent = currentExam;
+            document.getElementById('breadcrumbExamSubject').textContent = subject;
+            
+            const grid = document.getElementById('examTopicsGrid');
+            grid.innerHTML = '';
+            
+            const topics = examTopics[subject] || [];
+            
+            if (topics.length === 0) {
+                grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666; padding: 2rem;">Content for this subject will be added soon. Please check back later!</p>';
+            } else {
+                topics.forEach(topic => {
+                    const card = document.createElement('div');
+                    card.className = 'content-card';
+                    const typeEmoji = topic.type === 'Video' ? '🎥' : '📚';
+                    card.innerHTML = `
+                        <div class="content-header">
+                            <span class="content-type">${typeEmoji} ${topic.type}</span>
+                            <h4>${topic.name}</h4>
+                        </div>
+                        <div class="content-body">
+                            <p class="content-meta">${currentExam} • ${subject}</p>
+                            <p>Complete study material and practice</p>
+                            <a href="${topic.link}" class="download-btn" target="_blank">${topic.type === 'Video' ? 'Watch Now' : 'Download'}</a>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        // Back to exam subjects
+        function backToExamSubjects() {
+            document.getElementById('examTopicsView').classList.add('hidden');
+            document.getElementById('examSubjectsView').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        // Search functionality
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            if (searchTerm) {
+                alert(`Search functionality will be fully implemented soon!\n\nSearching for: "${searchTerm}"\n\nFor now, please browse by Classes or Exams.`);
+            } else {
+                alert('Please enter a search term');
+            }
+        }
+
+        // Enter key search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#') && href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
